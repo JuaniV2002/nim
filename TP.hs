@@ -20,7 +20,8 @@ jugadas = [1,3,4]
 
 -- | La funcion otro Jugador, dado un jugador, devuelve el otro jugador, por ejemplo: otroJugador C = H
 otroJugador :: Jugador -> Jugador
-otroJugador = undefined
+otroJugador C = H
+otroJugador H = C
 
 -- | Dada una jugada (cantidad de piedras que se retiran) y un estado retorna el estado resultante, se deben controlar los casos de jugadas no posibles
 hacerJugada :: Int -> Estado -> Estado
@@ -73,6 +74,7 @@ comenzarJuego cant | cant <= 0 = error "La cantidad de piedras debe ser mayor qu
 -- juegosGanadores k, calcula todos los comienzos ganadores para la computadora hasta con k piedras
 -- por ejemplo, juegosGanadores 10 = [2,7,9]
 juegosGanadores :: Int -> [Int]
-juegosGanadores i = undefined
+juegosGanadores k = [i | i <- [1..k], evalEstado (C, i) == CGano]
+
 
 
