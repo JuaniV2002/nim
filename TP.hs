@@ -25,7 +25,9 @@ otroJugador H = C
 
 -- | Dada una jugada (cantidad de piedras que se retiran) y un estado retorna el estado resultante, se deben controlar los casos de jugadas no posibles
 hacerJugada :: Int -> Estado -> Estado
-hacerJugada = undefined
+hacerJugada piedras (jugador, cantidad) 
+    | piedras `elem` jugadas && cantidad - piedras >= 0 = (otroJugador jugador, cantidad - piedras)
+    | otherwise = error "Jugada no válida"
 
 -- |  evalEstado toma un estado como parametro, y dice si el estado es ganador o perdedor considerando
 --  las mejores jugadas del oponente. Por ejemplo, evalEstado (H,2) = CGano, porque H solo puede
