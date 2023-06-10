@@ -50,7 +50,14 @@ evalEstado  (j, k)  | (k == 0) = if j == C then CPerdio else CGano
 -- 	En el caso mejorJug (H, k) tenemos que devolver la jugada que nos da el valor minimo (es decir, consideramos 
 -- 	la mejor jugada para H, que seria la peor para C).
 mejorJug :: Estado -> Int
-mejorJug = undefined
+mejorJug (_, cantidad)
+  | cantidad <= 4 = cantidad
+  | cantidad mod 6 == 0 = 1
+  | cantidad mod 6 == 1 = 1
+  | cantidad mod 6 == 2 = 1
+  | cantidad mod 6 == 3 = 3
+  | cantidad mod 6 == 4 = 4
+  | otherwise = 3
 
 -- | Las siguientes funciones implementan una pequeña interface para poder jugar interactivamente,.
 jugar :: Estado -> IO()
