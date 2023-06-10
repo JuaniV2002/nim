@@ -51,13 +51,14 @@ evalEstado  (j, k)  | (k == 0) = if j == C then CPerdio else CGano
 -- 	la mejor jugada para H, que seria la peor para C).
 mejorJug :: Estado -> Int
 mejorJug (_, cantidad)
-  | cantidad <= 4 = cantidad
-  | cantidad mod 6 == 0 = 1
-  | cantidad mod 6 == 1 = 1
-  | cantidad mod 6 == 2 = 1
-  | cantidad mod 6 == 3 = 3
-  | cantidad mod 6 == 4 = 4
-  | otherwise = 3
+  | cantidad <= 4 && cantidad /= 2 = cantidad
+  | otherwise     = case mod cantidad 6 of
+                      0 -> 1
+                      1 -> 1
+                      2 -> 1
+                      3 -> 3
+                      4 -> 4
+                      _ -> 3
 
 -- | Las siguientes funciones implementan una pequeña interface para poder jugar interactivamente,.
 jugar :: Estado -> IO()
