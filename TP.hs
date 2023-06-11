@@ -52,11 +52,14 @@ evalEstado  (j, k)  | (k == 0) = if j == C then CPerdio else CGano
 -- 	En el caso mejorJug (H, k) tenemos que devolver la jugada que nos da el valor minimo (es decir, consideramos 
 -- 	la mejor jugada para H, que seria la peor para C).
 mejorJug :: Estado -> Int
-mejorJug estado@(jugador, n)
-  | jugador == C = mejorJugada (maximumBy (comparing snd)) jugadas 
-  | otherwise = mejorJugada (minimumBy (comparing snd)) jugadas
+mejorJug estado@(jugador, n) = mejorJugada f jugadasPosibles
   where
-    mejorJugada f j = fst $ f $ zip jugadas $ map (evalEstado . flip hacerJugada estado) j
+    mejorJugada func j = fst $ func $ zip j $ map (evalEstado . flip hacerJugada estado) j
+    f = if jugador == C
+        then maximumBy (comparing snd)
+        else minimumBy (comparing snd)
+    jugadasPosibles = filter (<= n) jugadas
+
 
 -- | Las siguientes funciones implementan una pequeña interface para poder jugar interactivamente.
 jugar :: Estado -> IO()
@@ -82,4 +85,6 @@ comenzarJuego cant | cant <= 0 = error "La cantidad de piedras debe ser mayor qu
 -- juegosGanadores k, calcula todos los comienzos ganadores para la computadora hasta con k piedras
 -- por ejemplo, juegosGanadores 10 = [2,7,9]
 juegosGanadores :: Int -> [Int]
-juegosGanadores k = [i | i <- [1..k], evalEstado (C, i) == CGano]
+juegosGanadores k = [i | i <- [1..k], esGanador (C, i)]
+  where
+    esGanador estado = evalEstado estado == CGano
