@@ -3,6 +3,8 @@
 -- que no se encuentran implementadas (es decir, estan definidas con 'undefined').  
 
 module Piedras where 
+import Data.List (maximumBy, minimumBy)
+import Data.Ord ( comparing )
 
 -- | El siguiente tipo define los jugadores del juego, C por Computadora
 --   y H por Humano
@@ -50,17 +52,13 @@ evalEstado  (j, k)  | (k == 0) = if j == C then CPerdio else CGano
 -- 	En el caso mejorJug (H, k) tenemos que devolver la jugada que nos da el valor minimo (es decir, consideramos 
 -- 	la mejor jugada para H, que seria la peor para C).
 mejorJug :: Estado -> Int
-mejorJug (_, cantidad)
-  | cantidad <= 4 && cantidad /= 2 = cantidad
-  | otherwise     = case mod cantidad 6 of
-                      0 -> 1
-                      1 -> 1
-                      2 -> 1
-                      3 -> 3
-                      4 -> 4
-                      _ -> 3
+mejorJug estado@(jugador, n)
+  | jugador == C = mejorJugada (maximumBy (comparing snd)) jugadas 
+  | otherwise = mejorJugada (minimumBy (comparing snd)) jugadas
+  where
+    mejorJugada f j = fst $ f $ zip jugadas $ map (evalEstado . flip hacerJugada estado) j
 
--- | Las siguientes funciones implementan una pequeña interface para poder jugar interactivamente,.
+-- | Las siguientes funciones implementan una pequeña interface para poder jugar interactivamente.
 jugar :: Estado -> IO()
 jugar (j,k) = do
             putStrLn ("Hay "++ (show k) ++ " piedras, cuantas saca?:") 
