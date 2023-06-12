@@ -85,6 +85,4 @@ comenzarJuego cant | cant <= 0 = error "La cantidad de piedras debe ser mayor qu
 -- juegosGanadores k, calcula todos los comienzos ganadores para la computadora hasta con k piedras
 -- por ejemplo, juegosGanadores 10 = [2,7,9]
 juegosGanadores :: Int -> [Int]
-juegosGanadores k = [i | i <- [1..k], esGanador (C, i)]
-  where
-    esGanador estado = evalEstado estado == CGano
+juegosGanadores k = [i | i <- [1..k], evalEstado (C, i) /= CGano]
