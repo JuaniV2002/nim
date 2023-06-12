@@ -1,14 +1,25 @@
+Estos tests son siempre cuando comienza el H, teniendo en cuenta que este y C hagan las mejores jugadas posibles.
 Test 1 : 
 comenzarJuego 10
+Sacando 1 , 3 y 1. 
+Gana H. 
 
 Test 2 :  
-comenzarJuego 5
+comenzarJuego 9 
+Sacando 1 , 1 y 1.
+Gana C.
 
 Test 3 :  
-comenzarJuego 6
+comenzarJuego 6 
+Sacando 4 y 1.
+Gana H. 
 
 Test 4 :  
 comenzarJuego 2
+Sacando 1.
+Gana C.
 
 Test 5 :  
-comenzarJuego 20
+comenzarJuego 20 
+Sacando 4, 3, 3 y 1.
+Gana H. 
