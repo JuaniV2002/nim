@@ -1,0 +1,14 @@
+Test 1 : 
+comenzarJuego 10
+
+Test 2 :  
+comenzarJuego 5
+
+Test 3 :  
+comenzarJuego 6
+
+Test 4 :  
+comenzarJuego 2
+
+Test 5 :  
+comenzarJuego 20
