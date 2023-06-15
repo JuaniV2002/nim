@@ -4,7 +4,7 @@
 
 module Piedras where 
 import Data.List (maximumBy, minimumBy)
-import Data.Ord ( comparing )
+import Data.Ord (comparing)
 
 -- | El siguiente tipo define los jugadores del juego, C por Computadora
 --   y H por Humano
