@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nim Game - Haskell Port</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nim Game</h1>
+            <p>A classic game of strategy. Don't take the last stone!</p>
+        </header>
+
+        <main>
+            <div id="game-board" class="game-board">
+                <div class="stones-container" id="stones-container">
+                    <!-- Stones will be generated here -->
+                </div>
+                <div class="stone-count">
+                    Remaining Stones: <span id="stone-count-display">0</span>
+                </div>
+            </div>
+
+            <div id="controls" class="controls">
+                <p id="status-message">Your turn! How many stones will you take?</p>
+                <div class="button-group">
+                    <button onclick="game.humanMove(1)" class="btn">Take 1</button>
+                    <button onclick="game.humanMove(3)" class="btn">Take 3</button>
+                    <button onclick="game.humanMove(4)" class="btn">Take 4</button>
+                </div>
+            </div>
+
+            <div id="setup" class="setup hidden">
+                <h2>New Game</h2>
+                <p>Enter initial number of stones:</p>
+                <input type="number" id="initial-stones" value="20" min="1" max="50">
+                <button onclick="game.start()" class="btn btn-primary">Start Game</button>
+            </div>
+            
+            <div id="game-over" class="game-over hidden">
+                <h2 id="winner-message"></h2>
+                <button onclick="game.reset()" class="btn btn-primary">Play Again</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Ported from Haskell logic | <a href="https://github.com/juani/nim" target="_blank">View Source</a></p>
+        </footer>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
