@@ -1,0 +1,11 @@
+{
+    "name": "nim-game",
+    "version": "1.0.0",
+    "description": "Web-based Nim game ported from Haskell",
+    "main": "game.js",
+    "scripts": {
+        "test": "node test.js"
+    },
+    "author": "",
+    "license": "ISC"
+}

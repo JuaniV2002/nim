@@ -97,12 +97,12 @@ function bestMove(state) {
         const val = evalState(nextState);
 
         if (player === Player.C) {
-            if (val > bestVal) {
+            if (val >= bestVal) {
                 bestVal = val;
                 bestM = move;
             }
         } else {
-            if (val < bestVal) {
+            if (val <= bestVal) {
                 bestVal = val;
                 bestM = move;
             }
